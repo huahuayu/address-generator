@@ -183,6 +183,8 @@ func AddressGenerator(c *gin.Context) {
 	type EthAddress struct {
 		PrivateKey string `json:"privateKey"`
 		Address string `json:"address"`
+		Url string `json:"url"`
+		Github string `json:"github"`
 	}
 	privateKey, err := crypto.GenerateKey()
 	if err != nil {
@@ -190,7 +192,7 @@ func AddressGenerator(c *gin.Context) {
 	}
 
 	privateKeyBytes := crypto.FromECDSA(privateKey)
-	fmt.Println("privateKeyBytes: ", hexutil.Encode(privateKeyBytes)) // fad9c8855b740a0b7ed4c221dbad0f33a83a49cad6b3fe8d5817ac83d38b6a19
+	fmt.Println("privateKeyBytes: ", hexutil.Encode(privateKeyBytes)) // 0xfad9c8855b740a0b7ed4c221dbad0f33a83a49cad6b3fe8d5817ac83d38b6a19
 
 	publicKey := privateKey.Public()
 	publicKeyECDSA, ok := publicKey.(*ecdsa.PublicKey)
@@ -209,11 +211,11 @@ func AddressGenerator(c *gin.Context) {
 		log.Println(err)
 	}
 	defer f.Close()
-	if _, err := f.WriteString(address + "\n"); err != nil {
+	if _, err := f.WriteString("\""+address+"\"" + "\n"); err != nil {
 		log.Println(err)
 	}
 
-	view.ResponseOK(c,EthAddress{PrivateKey: hexutil.Encode(privateKeyBytes),Address: address})
+	view.ResponseOK(c,EthAddress{PrivateKey: hexutil.Encode(privateKeyBytes),Address: address,Url: "https://cdn.liushiming.cn/amber/blockchain-for-dev.zip",Github: "https://github.com/huahuayu/address-generator"})
 }
 
 func hashAndSalt(plainPwd string) string {
