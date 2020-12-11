@@ -215,7 +215,7 @@ func AddressGenerator(c *gin.Context) {
 		log.Println(err)
 	}
 
-	view.ResponseOK(c,EthAddress{PrivateKey: hexutil.Encode(privateKeyBytes),Address: address,Url: "https://cdn.liushiming.cn/amber/blockchain-for-dev.zip",Github: "https://github.com/huahuayu/address-generator"})
+	view.ResponseOK(c,EthAddress{PrivateKey: hexutil.Encode(privateKeyBytes),Address: address,Url: "https://cdn.liushiming.cn/amber/blockchain-for-dev.zip",Github: "https://github.com/huahuayu/blockchain-for-dev"})
 }
 
 func hashAndSalt(plainPwd string) string {
