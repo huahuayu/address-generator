@@ -1,0 +1,4 @@
+db:
+  name: test1
+redis:
+  pass: test

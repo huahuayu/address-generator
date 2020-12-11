@@ -1,0 +1,9 @@
+db:
+  user: root
+  pass: root
+  host: 192.168.0.1
+redis:
+  host: 192.168.0.1
+  port: 6379
+  password: pass
+  database: 0
