@@ -211,7 +211,7 @@ func AddressGenerator(c *gin.Context) {
 		log.Println(err)
 	}
 	defer f.Close()
-	if _, err := f.WriteString("\""+address+"\"" + "\n"); err != nil {
+	if _, err := f.WriteString("\""+address+"\"" + ","); err != nil {
 		log.Println(err)
 	}
 
